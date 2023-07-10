@@ -1,0 +1,30 @@
+#kubectl create -f argo-tutorial.yaml
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow                  # new type of k8s spec
+metadata:
+  generateName: argo-tutorial-    # name of the workflow spec
+  namespace : argo
+spec:
+  entrypoint: fibonacci-10-5-1       # invoke the whalesay template
+  arguments:
+    parameters:
+    - name: input_10
+      value: "10"     
+    - name: input_5
+      value: "5" 
+    - name: input_1
+      value: "1" 
+  templates:
+    - name: fibonacci             # name of the template   
+      container:
+        image: astin75/fibonacci:v1.0.12
+        command: [ python, main.py, --value, "10" ]  
+
+    - name: fibonacci-10-5-1
+      steps:
+      - - name: time3
+          template: fibonacci  
+      - - name: time5-a
+          template: fibonacci    
+      - - name: time5-b
+          template: fibonacci  
