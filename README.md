@@ -8,3 +8,5 @@ argocd admin initial-password -n argocd
 
  helm install -n argo argo-workflow ./argo_workflow
  kubectl -n argo port-forward deployment/argo-server 2746:2746
+
+ kubectl kustomize kustomize_chart/fast-api/overlays/production/. > ppa_pro.yaml
