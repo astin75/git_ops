@@ -24,6 +24,8 @@ jobs:
           GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
       
       - name: Commit files
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
         run: |
           git config --global user.email astin75@gmail.com
           git config --global user.name astin75          
