@@ -23,11 +23,8 @@ jobs:
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
       
-      - uses: actions/checkout@v3 
-        name: switch to staging and push
-        with:
-          token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
-      - run: |
+      - name: Commit files
+        run: |
           git config --global user.email astin75@gmail.com
           git config --global user.name astin75          
           git add .
