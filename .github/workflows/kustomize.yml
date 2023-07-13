@@ -11,23 +11,35 @@ env:
   KUSTOMIZEE_OUTPUT_DIR: deploy/production/deployment.yaml
 
 jobs:
-  create-deployment-branch:
+  deploy:
     runs-on: ubuntu-latest
-    needs:
-      - publish-image
+    # build job 완료 후 진행
+    needs: build
     steps:
-      - uses: imranismail/setup-kustomize@v2
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+
+      - name: Checkout kustomize repository
+        uses: actions/checkout@v2
         with:
-          kustomize-version: '5.0.3'
-          github-token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
-      - run: |
-          git switch staging
+          # kubernetes 설정정보 저장소
+          repository: astin75/git_ops
+          ref: staging
+          # 다른 저장소에 push 하려면 Personal Access Token이 필요.
+          token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
+      # 새 이미지 버전으로 파일 수정
+      - name: Update Kubernetes resources
+        run: |
           kustomize $KUSTOMIZEE_DIR > $KUSTOMIZEE_OUTPUT_DIR
+
+      - name: Commit files
+        run: |
           git config --global user.email astin75@gmail.com
           git config --global user.name astin75           
           git add .
           git commit -m "Kustomize build"
           git push
+
 
 
 
