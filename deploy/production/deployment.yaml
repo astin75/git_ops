@@ -9,7 +9,7 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: fast-api-production
+    app: fast-api
   type: LoadBalancer
 ---
 apiVersion: apps/v1
