@@ -5,21 +5,46 @@ name: 'Kustomize GitHub Actions'
 
 on:
   push:
-    branches: [ "staging" ]
+    branches: 
+      - staging
+    paths:
+      - kustomize_chart/fast-api/overlays/staging/**.yaml
+env:
+  KUSTOMIZEE_DIR: kustomize_chart/fast-api/overlays/staging/
+  KUSTOMIZEE_OUTPUT_DIR: deploy/staging/deployment.yaml
+
 jobs:
-  kustomize:
-    name: 'Kustomize'
+  build:
     runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'Kustomize overlay')"
+    # build job 완료 후 진행
     steps:
-      - name: 'Checkout'
-        uses: actions/checkout@master
-      - name: 'Kustomize Build'
-        uses: karancode/kustomize-github-action@master
+      - name: Setup Kustomize
+        uses: imranismail/setup-kustomize@v1
+
+      - name: Checkout kustomize repository
+        uses: actions/checkout@v2
         with:
-          kustomize_version: '5.0.3'
-          kustomize_build_dir: 'kubectl kustomize kustomize_chart/fast-api/overlays/production/.' 
-          kustomize_comment: true
-          kustomize_output_file: "git_ops/deploy/production/deployment.yaml"
-          enable_alpha_plugins: true
-        env:
-          GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
+          # kubernetes 설정정보 저장소
+          repository: astin75/git_ops
+          ref: staging
+          # 다른 저장소에 push 하려면 Personal Access Token이 필요.
+          token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
+      # 새 이미지 버전으로 파일 수정
+      - name: Update Kubernetes resources
+        run: |
+          kustomize build $KUSTOMIZEE_DIR > $KUSTOMIZEE_OUTPUT_DIR
+
+      - name: Commit files
+        run: |
+          git config --global user.email astin75@gmail.com
+          git config --global user.name astin75           
+          git add .
+          git commit -m "Kustomize build"
+          git push
+
+
+
+
+        
+

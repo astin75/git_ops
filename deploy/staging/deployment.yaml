@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: fast-api-service-staging
+  namespace: staging
+spec:
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: fast-api-staging
+  type: LoadBalancer
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fast-api-staging
+  namespace: staging
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fast-api
+  template:
+    metadata:
+      labels:
+        app: fast-api
+    spec:
+      containers:
+      - image: astin75/fast-api:v1.0.31
+        name: fast-api
+        ports:
+        - containerPort: 80
+---
+apiVersion: argoproj.io/v1alpha1
+kind: WorkflowTemplate
+metadata:
+  name: fibonacci-template-staging
+  namespace: staging
+spec:
+  arguments:
+    parameters:
+    - name: FIBONACCI_IMAGE
+      value: astin75/fibonacci
+    - name: FIBONACCI_IMAGE_TAG
+      value: v1.0.31
+  entrypoint: fibonacci-10-5-1
+  templates:
+  - container:
+      command:
+      - python
+      - main.py
+      - --value
+      - "10"
+      image: '{{workflow.parameters.FIBONACCI_IMAGE}}:{{workflow.parameters.FIBONACCI_IMAGE_TAG}}'
+    name: fibonacci
+  - name: fibonacci-10-5-1
+    steps:
+    - - name: time3
+        template: fibonacci
+    - - name: time5-a
+        template: fibonacci
+    - - name: time5-b
+        template: fibonacci
