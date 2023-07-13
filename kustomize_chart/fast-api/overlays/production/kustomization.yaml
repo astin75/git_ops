@@ -19,4 +19,4 @@ images:
   newName: astin75/fast-api
   newTag: v1.0.31
 namespace: production
-nameSuffix: -production
+
