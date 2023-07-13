@@ -9,14 +9,9 @@ patches:
     kind: WorkflowTemplate
     name: fibonacci-template
     version: v1alpha1
-- path: service-patches.yaml
-  target:
-    kind: Service
-    name: fast-api-service
-    version: v1
 images:
 - name: FASTAPI_IMAGE
   newName: astin75/fast-api
-  newTag: v1.0.31
+  newTag: v1.0.32
 namespace: production
 nameSuffix: -production
