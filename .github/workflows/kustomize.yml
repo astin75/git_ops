@@ -24,6 +24,9 @@ jobs:
           GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
       
       - uses: actions/checkout@v3 
+        name: switch to staging and push
+        with:
+          token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
       - run: |
           git switch staging
           git config --global user.email astin75@gmail.com
