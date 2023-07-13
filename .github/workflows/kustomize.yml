@@ -7,7 +7,7 @@ on:
   push:
     branches: [ "staging" ]
     paths:
-      - git_ops/kustomize_chart/fast-api/overlays/staging/**.yaml
+      - git_ops/kustomize_chart/fast-api/overlays/staging/**
 env:
   KUSTOMIZEE_DIR: kustomize_chart/fast-api/overlays/staging/
   KUSTOMIZEE_OUTPUT_DIR: deploy/staging/deployment.yaml
