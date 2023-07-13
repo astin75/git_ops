@@ -1,0 +1,26 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-python
+
+name: 'Kustomize GitHub Actions'
+
+on:
+  push:
+    branches: [ "staging" ]
+jobs:
+  kustomize:
+    name: 'Kustomize'
+    runs-on: ubuntu-latest
+    steps:
+      - name: 'Checkout'
+        uses: actions/checkout@master
+      - name: 'Kustomize Build'
+        uses: karancode/kustomize-github-action@master
+        with:
+          kustomize_version: '5.0.3'
+          kustomize_build_dir: 'kubectl kustomize kustomize_chart/fast-api/overlays/production/.' 
+          kustomize_comment: true
+          kustomize_output_file: "git_ops/deploy/production/deployment.yaml"
+          kustomize_build_options: "--load_restrictor none"
+          enable_alpha_plugins: true
+        env:
+          GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
