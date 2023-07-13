@@ -28,7 +28,6 @@ jobs:
         with:
           token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
       - run: |
-          git switch staging
           git config --global user.email astin75@gmail.com
           git config --global user.name astin75          
           git add .
