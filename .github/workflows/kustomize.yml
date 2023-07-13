@@ -5,9 +5,10 @@ name: 'Kustomize GitHub Actions'
 
 on:
   push:
-    branches: [ "staging" ]
+    branches: 
+      - staging
     paths:
-      - git_ops/kustomize_chart/fast-api/overlays/staging/**
+      - kustomize_chart/fast-api/overlays/staging/**.yaml
 env:
   KUSTOMIZEE_DIR: kustomize_chart/fast-api/overlays/staging/
   KUSTOMIZEE_OUTPUT_DIR: deploy/staging/deployment.yaml
