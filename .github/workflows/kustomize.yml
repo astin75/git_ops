@@ -11,7 +11,7 @@ env:
   KUSTOMIZEE_OUTPUT_DIR: deploy/production/deployment.yaml
 
 jobs:
-  deploy:
+  build:
     runs-on: ubuntu-latest
     # build job 완료 후 진행
     steps:
