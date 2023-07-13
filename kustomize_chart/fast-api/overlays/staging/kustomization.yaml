@@ -11,6 +11,12 @@ patches:
     kind: WorkflowTemplate 
     name: fibonacci-template 
     version: v1alpha1
+    
+- path: service-patches.yaml
+  target:
+    kind: Service
+    name: fast-api-service
+    version: v1
 
 
 images:
