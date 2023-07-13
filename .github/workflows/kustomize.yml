@@ -20,6 +20,5 @@ jobs:
           kustomize_build_dir: 'kubectl kustomize kustomize_chart/fast-api/overlays/production/.' 
           kustomize_comment: true
           kustomize_output_file: "git_ops/deploy/production/deployment.yaml"
-          enable_alpha_plugins: true
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
