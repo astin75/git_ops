@@ -1,0 +1,11 @@
+apiVersion: apps/v1
+kind: WorkflowTemplate
+metadata:
+  name: fibonacci-template
+spec:
+  arguments:
+    parameters:
+    - name: FIBONACCI_IMAGE
+      value: astin75/fibonacci
+    - name: FIBONACCI_IMAGE_TAG
+      value: v1.0.22
