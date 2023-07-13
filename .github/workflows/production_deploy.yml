@@ -8,7 +8,7 @@ on:
     branches: 
       - staging
     paths:
-      - kustomize_chart/fast-api/overlays/staging/**.yaml
+      - deploy/staging/**.yaml
 env:
   KUSTOMIZEE_DIR: kustomize_chart/fast-api/overlays/production/
   KUSTOMIZEE_OUTPUT_DIR: deploy/production/deployment.yaml
