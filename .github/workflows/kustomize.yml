@@ -22,3 +22,13 @@ jobs:
           kustomize_output_file: "git_ops/deploy/production/deployment.yaml"
         env:
           GITHUB_ACCESS_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
+      
+      - uses: actions/checkout@v3 
+      - run: |
+          git switch staging
+          git config --global user.email astin75@gmail.com
+          git config --global user.name astin75          
+          git add .
+          git commit -m "Kustomize build"
+          git push                    
+
