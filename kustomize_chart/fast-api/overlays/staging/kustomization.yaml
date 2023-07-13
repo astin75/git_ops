@@ -11,7 +11,7 @@ patches:
     kind: WorkflowTemplate 
     name: fibonacci-template 
     version: v1alpha1
-    
+
 - path: service-patches.yaml
   target:
     kind: Service
@@ -25,4 +25,5 @@ images:
   newTag: v1.0.31
 
 namespace: staging
-nameSuffix: -staging
+
+
