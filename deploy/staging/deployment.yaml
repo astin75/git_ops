@@ -28,7 +28,7 @@ spec:
         app: fast-api
     spec:
       containers:
-      - image: astin75/fast-api:v1.0.30
+      - image: astin75/fast-api:v1.0.31
         name: fast-api
         ports:
         - containerPort: 80
@@ -44,7 +44,7 @@ spec:
     - name: FIBONACCI_IMAGE
       value: astin75/fibonacci
     - name: FIBONACCI_IMAGE_TAG
-      value: v1.0.27
+      value: v1.0.29
   entrypoint: fibonacci-10-5-1
   templates:
   - container:
