@@ -20,6 +20,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Checkout staging repository
+      uses: actions/checkout@v2
+      with:
+        # kubernetes 설정정보 저장소
+        repository: astin75/git_ops
+        ref: staging
+        # 다른 저장소에 push 하려면 Personal Access Token이 필요.
+        token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
+
     - uses: actions/checkout@v3
     - name: Set up Python 3.9
       uses: actions/setup-python@v3
@@ -36,16 +45,7 @@ jobs:
     - name: Setup Kustomize
       uses: imranismail/setup-kustomize@v1
 
-    - name: Checkout kustomize repository
-      uses: actions/checkout@v2
-      with:
-        # kubernetes 설정정보 저장소
-        repository: astin75/git_ops
-        ref: staging
-        # 다른 저장소에 push 하려면 Personal Access Token이 필요.
-        token: ${{ secrets.PERSONAL_ACCESS_TOKENS }}
-        
-    #  kustomize build     
+      #  kustomize build     
     - name: Update Kubernetes resources
       run: |
         kustomize build $KUSTOMIZEE_DIR > $KUSTOMIZEE_OUTPUT_DIR
