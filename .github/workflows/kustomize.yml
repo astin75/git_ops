@@ -17,7 +17,7 @@ jobs:
         uses: karancode/kustomize-github-action@master
         with:
           kustomize_version: '5.0.3'
-          kustomize_build_dir: 'kubectl kustomize kustomize_chart/fast-api/overlays/production/' 
+          kustomize_build_dir: 'kustomize_chart/fast-api/overlays/production/' 
           kustomize_comment: true
           kustomize_output_file: "git_ops/deploy/production/deployment.yaml"
         env:
