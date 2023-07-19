@@ -28,7 +28,7 @@ spec:
         app: fast-api
     spec:
       containers:
-      - image: astin75/fast-api:v1.0.54
+      - image: astin75/fast-api:v1.0.55
         name: fast-api
         ports:
         - containerPort: 80
