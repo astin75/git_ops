@@ -9,7 +9,6 @@ with open(kustomization_path, 'r') as f:
     
 
 kustomization['namespace'] = 'production'
-kustomization['nameSuffix'] = '-production'
 
 print(kustomization)
 kustomization_path_production = kustomization_path.replace("staging", "production")
