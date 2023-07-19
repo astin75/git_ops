@@ -16,6 +16,6 @@ patches:
 images:
 - name: FASTAPI_IMAGE
   newName: astin75/fast-api
-  newTag: v1.0.41
+  newTag: v1.0.42
 
 namespace: staging
