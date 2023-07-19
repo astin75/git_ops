@@ -12,6 +12,6 @@ patches:
 images:
 - name: FASTAPI_IMAGE
   newName: astin75/fast-api
-  newTag: v1.0.43
+  newTag: v1.0.44
 namespace: production
 nameSuffix: -production
