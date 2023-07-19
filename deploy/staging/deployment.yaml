@@ -10,7 +10,7 @@ spec:
     targetPort: 80
   selector:
     app: fast-api
-  type: LoadBalancer
+  type: NodePort
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -28,7 +28,7 @@ spec:
         app: fast-api
     spec:
       containers:
-      - image: astin75/fast-api:v1.0.34
+      - image: astin75/fast-api:v1.0.1
         name: fast-api
         ports:
         - containerPort: 80
