@@ -9,7 +9,7 @@
 
 # install argoCD, and argo workflow
 
-## at helm_chart
+### path ./helm_chart
 ### if no namespace, you need make it
 - kubectl create namespace {namespace name}
 ### argo cd
