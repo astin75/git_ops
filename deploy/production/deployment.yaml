@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: fast-api-service-production
+  name: fast-api-service
   namespace: production
 spec:
   ports:
@@ -15,7 +15,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: fast-api-production
+  name: fast-api
   namespace: production
 spec:
   replicas: 1
@@ -28,7 +28,7 @@ spec:
         app: fast-api
     spec:
       containers:
-      - image: astin75/fast-api:v1.0.1
+      - image: astin75/fast-api:v1.0.2
         name: fast-api
         ports:
         - containerPort: 80
@@ -36,7 +36,7 @@ spec:
 apiVersion: argoproj.io/v1alpha1
 kind: WorkflowTemplate
 metadata:
-  name: fibonacci-template-production
+  name: fibonacci-template
   namespace: production
 spec:
   arguments:
