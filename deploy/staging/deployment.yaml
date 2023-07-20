@@ -44,7 +44,7 @@ spec:
     - name: FIBONACCI_IMAGE
       value: astin75/fibonacci
     - name: FIBONACCI_IMAGE_TAG
-      value: v1.0.39
+      value: v1.0.o0
   entrypoint: fibonacci-10-5-1
   templates:
   - container:
