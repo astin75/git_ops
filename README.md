@@ -1,8 +1,9 @@
 # git_ops
 
 # env 
-- docker install : https://docs.docker.com/engine/install/ (for minikube vm)
+- docker : https://docs.docker.com/engine/install/ (for minikube vm)
 - minikube : https://minikube.sigs.k8s.io/docs/start/
+- kubectl : https://kubernetes.io/docs/tasks/tools/#kubectl
 
 ## minikube start
 - minikube start
